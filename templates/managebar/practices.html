@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load managbar_tags %}
+{% block content %}
+
+<h2>{% getnumber %}</h2>
+{% for b in barnames %}
+    
+
+<h3> 
+    <a href="{% url 'managebar:bardetail' shbar=b.shbarnameh %}" > 
+        {{b.driver_fname}} -----  {{b.shbarnameh}} 
+    </a>
+    
+</h3>
+
+{% endfor %}
+
+
+
+{% endblock %}

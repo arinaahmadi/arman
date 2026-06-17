@@ -1,0 +1,210 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* استفاده از فونت‌های استاندارد فارسی */
+  font-family: Tahoma, "Vazirmatn", "IranSans", Arial, sans-serif;
+  color: #444;
+  background: #f5f5f0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ==================== HEADER ==================== */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 40px;
+  background: #f0eeea;
+  border-bottom: 1px solid #ddd;
+}
+
+header .logo img {
+  width: 90px;
+}
+
+header .logo p {
+  font-size: 11px;
+  color: #888;
+}
+
+header nav a {
+  margin-right: 20px; /* راست‌چین: جایگزین margin-left شد */
+  text-decoration: none;
+  color: #555;
+  font-size: 14px;
+  padding: 30px 15px;
+}
+
+header nav a.active {
+  background: #6bbfbf;
+  color: #fff;
+}
+
+header nav a:hover {
+  color: #6bbfbf;
+}
+header nav a.active:hover {
+  color: #fff;
+}
+
+/* ==================== MAIN ==================== */
+main {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.section-row {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 50px 0;
+  border-bottom: 1px dashed #ddd;
+}
+
+.alt-bg {
+  background: #fafaf8;
+  padding-right: 20px;
+  padding-left: 20px;
+  border-radius: 8px;
+}
+
+.col-img {
+  flex: 1;
+  text-align: center;
+}
+
+.col-text {
+  flex: 1;
+}
+
+.col-text h1 {
+  font-size: 36px;
+  color: #7a9a3a;
+}
+
+.col-text h1 span {
+  display: block;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #aaa;
+  font-weight: normal;
+}
+
+.col-text h3 {
+  font-size: 18px;
+  color: #7a9a3a;
+  margin-bottom: 12px;
+}
+
+.col-text p {
+  font-size: 14px; /* برای فونت فارسی کمی بزرگتر شد */
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+/* تغییر از راست‌چین به چپ‌چین برای ایجاد تنوع در زبان فارسی */
+.left-align {
+  text-align: left;
+}
+
+/* ==================== FOOTER ==================== */
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #6bbfbf;
+  color: #fff;
+  padding: 20px 40px;
+  font-size: 13px;
+}
+
+footer .social a {
+  color: #fff;
+  margin-right: 15px; /* راست‌چین: جایگزین margin-left شد */
+  text-decoration: none;
+  font-size: 16px;
+  background: rgba(255,255,255,0.2);
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+footer .social a:hover {
+  background: rgba(255,255,255,0.4);
+}
+
+/* ========================================= */
+/* ===== MOBILE RESPONSIVE & HAMBURGER ===== */
+/* ========================================= */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: #555;
+  border-radius: 3px;
+  transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+  header {
+    position: relative;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  header nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    right: 0; /* راست‌چین: جایگزین left: 0 شد */
+    width: 100%;
+    background: #f0eeea;
+    border-bottom: 1px solid #ddd;
+    z-index: 100;
+  }
+
+  header nav.open {
+    display: flex;
+  }
+
+  header nav a {
+    margin: 0;
+    padding: 15px;
+    text-align: center;
+    border-top: 1px solid #ddd;
+  }
+
+  .section-row {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .col-text.left-align {
+    text-align: center;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+}

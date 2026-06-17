@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load managbar_tags %}
+{% block content %}
+
+<h2>{% getnumber %}</h2>
+{% if barnameh %}
+<h2> Driver name : {{barnameh.driver_fname}} {{barnameh.driver_lname}} </h2>
+<h2> shomare barname : {{barnameh.shbarnameh}} </h2>
+<h2> Date of barname : {{barnameh.Barnameh_date}} </h2>
+<h2> Mobile : {{barnameh.mobile}} </h2>
+{% else %}
+<h2> Not found</h2>
+{% endif %}
+
+
+
+
+
+
+{% endblock %}
