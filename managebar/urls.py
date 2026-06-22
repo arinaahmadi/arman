@@ -9,6 +9,9 @@ urlpatterns = [
     path('home/',home_view,name='home'),
     path('practices/',practices_view,name='practices'),
     path('ourlawyers/',ourlawyers_view,name='ourlawyers'),
-    path('bardetail/<str:shbar>',detail_view,name='bardetail')
+    path('bardetail/<str:shbar>',detail_view,name='bardetail'),
+    path('barnameh/',barnameh_view,name='barnameh'),
+    path('insertbank/',insertbank_view,name='insertbank')
+
 
 ]

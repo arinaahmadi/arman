@@ -4,8 +4,21 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from managebar.models import Barnameh
 
+
 def start_view(request):
-    return render(request,'managebar/index.html')
+    barnameha = Barnameh.objects.all()
+    context = {'barnames':barnameha}
+    return render(request,'managebar/index.html',context)
+
+def barnameh_view(request):
+    barnameha = Barnameh.objects.all()
+    context = {'barnames':barnameha}
+    return render(request,'managebar/barnameh.html',context)
+
+def insertbank_view(request):
+    if request.method == 'POST':
+        print('Done')
+    return render(request,'managebar/insertbank.html')
 
 def about_view(request):
     return render(request,'managebar/about.html')

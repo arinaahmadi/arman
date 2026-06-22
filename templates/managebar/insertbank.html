@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<br>
+<section class="panel">
+  <div class="panel-header">
+    <div>
+      <h2 class="h5 mb-1 section-title"><i class="bi bi-table" aria-hidden="true"></i><span>Advanced Table</span></h2>
+      <p class="text-muted mb-0">Searchable responsive table for orders and customer data.</p>
+    </div><input class="form-control form-control-sm table-search" type="search" placeholder="جستجوی بارنامه"
+      data-table-search="ordersTable" aria-label="Search barnameh">
+  </div>
+  <div class="table-responsive">
+
+    <form action="{% url 'managebar:insertbank' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="bank_name" />
+        <button type="submit"> submit </button>
+    </form>
+
+
+  </div>
+</section>
+
+
+{% endblock %}
