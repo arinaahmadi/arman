@@ -23,15 +23,13 @@
         <div class="page-heading-copy">
             <span class="page-icon"><i class="bi bi-people" aria-hidden="true"></i></span>
             <div>
-                <p class="eyebrow mb-1">Management</p>
-                <h1 class="h3 mb-1">Users</h1>
-                <p class="text-muted mb-0">Review accounts, roles, account status, and team ownership.</p>
+                <h1 class="h3 mb-1">مدیریت کاربران</h1>
             </div>
         </div>
         <div class="heading-actions">
             <a class="btn btn-outline-secondary btn-sm" href="tables.html">
                 <i class="bi bi-download" aria-hidden="true"></i> ارسال به اکسل</a>
-            <a class="btn btn-primary btn-sm" href="add-user.html">
+            <a class="btn btn-primary btn-sm" href="{% url 'accounts:newuser' %}">
                 <i class="bi bi-person-plus" aria-hidden="true"></i> کاربر جدید</a>
         </div>
     </div>
@@ -41,11 +39,12 @@
             <thead>
                 <tr>
                     <th scope="col"> نام کاربری</th>
-                    <th scope="col">Role</th>
-                    <th scope="col">Team</th>
+                    <th scope="col">نام</th>
+                    <th scope="col">نام خانوادگی</th>
                     <th scope="col">Status</th>
                     <th scope="col">Joined</th>
                     <th scope="col" class="text-end">Action</th>
+                    <th scope="col" class="text-end">ویرایش</th>
                 </tr>
             </thead>
             <tbody>
@@ -61,8 +60,8 @@
                             </div>
                         </div>
                     </td>
-                    <td>Admin</td>
-                    <td>Operations</td>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.last_name }}</td>
                     {% if user.is_active %}
                     <td><span class="badge text-bg-success">Active</span></td>
                     {% else %}
@@ -70,6 +69,13 @@
                     {% endif %}
                     <td>Jan 12, 2026</td>
                     <td class="text-end"><a class="btn btn-light btn-sm" href="user-details.html">View</a></td>
+                    <td class="text-end">
+                        <a class="btn btn-light btn-sm" href="{% url 'accounts:edit_user' user.id %}"><i
+                                class="bi bi-pencil-square"></i>
+                            ویرایش
+                        </a>
+                    </td>
+
                 </tr>
                 {% endfor %}
             </tbody>
@@ -131,7 +137,8 @@
                     </td>
                     <td class="text-end"><a class="btn btn-light btn-sm" href="user-details.html">View</a></td>
                     <td class="text-end">
-                        <a class="btn btn-light btn-sm" href="{% url 'accounts:edit_group' group.id %}"><i class="bi bi-pencil-square"></i>
+                        <a class="btn btn-light btn-sm" href="{% url 'accounts:edit_group' group.id %}"><i
+                                class="bi bi-pencil-square"></i>
                             ویرایش
                         </a>
                     </td>
@@ -147,6 +154,9 @@
             </tbody>
         </table>
     </div>
+
+
+    
     <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 mt-3">
         <p class="text-muted small mb-0">Showing 1 to 5 of 124 users</p>
         <nav aria-label="Users pagination">
