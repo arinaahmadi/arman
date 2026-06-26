@@ -3,8 +3,9 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from managebar.models import Barnameh
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def start_view(request):
     barnameha = Barnameh.objects.all()
     context = {'barnames':barnameha}

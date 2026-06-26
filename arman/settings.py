@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'managebar.apps.ManagebarConfig',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -120,3 +121,4 @@ STATIC_URL = 'statics/'
 STATICFILES_DIRS = [
     BASE_DIR / "statics",
 ]
+

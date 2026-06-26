@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="page-heading">
+
+    <div class="page-heading-copy">
+        <span class="page-icon"><i class="bi bi-window-stack" aria-hidden="true"></i></span>
+        <div>
+            <p class="eyebrow mb-1">مدیریت</p>
+            <h1 class="h3 mb-1">مدیریت کاربران</h1>
+            <p class="text-muted mb-0">جهت ویرایش کاربران سیستم</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<section class="panel mt-3">
+    <div class="page-heading">
+        <div class="page-heading-copy">
+            <span class="page-icon"><i class="bi bi-people" aria-hidden="true"></i></span>
+            <div>
+                <p class="eyebrow mb-1">Management</p>
+                <h1 class="h3 mb-1">Users</h1>
+                <p class="text-muted mb-0">Review accounts, roles, account status, and team ownership.</p>
+            </div>
+        </div>
+        <div class="heading-actions">
+            <a class="btn btn-outline-secondary btn-sm" href="tables.html">
+                <i class="bi bi-download" aria-hidden="true"></i> ارسال به اکسل</a>
+            <a class="btn btn-primary btn-sm" href="add-user.html">
+                <i class="bi bi-person-plus" aria-hidden="true"></i> کاربر جدید</a>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table align-middle mb-0" id="usersTable" data-searchable-table>
+            <thead>
+                <tr>
+                    <th scope="col"> نام کاربری</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Team</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Joined</th>
+                    <th scope="col" class="text-end">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center gap-2">
+                            <img class="avatar-img avatar-sm"
+                                src="{% static 'assets/images/avatar/avatar-fallback.jpg' %}" alt="Sarah Ahmed">
+                            <div>
+                                <p class="fw-semibold mb-0">{{ user.username }}</p>
+                                <p class="text-muted small mb-0">{{ user.email }}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>Admin</td>
+                    <td>Operations</td>
+                    {% if user.is_active %}
+                    <td><span class="badge text-bg-success">Active</span></td>
+                    {% else %}
+                    <td><span class="badge text-bg-success">Dactive</span></td>
+                    {% endif %}
+                    <td>Jan 12, 2026</td>
+                    <td class="text-end"><a class="btn btn-light btn-sm" href="user-details.html">View</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 mt-3">
+        <p class="text-muted small mb-0">Showing 1 to 5 of 124 users</p>
+        <nav aria-label="Users pagination">
+            <ul class="pagination pagination-sm mb-0">
+                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+<section class="panel mt-3">
+    <div class="page-heading">
+        <div class="page-heading-copy">
+            <span class="page-icon"><i class="bi bi-people" aria-hidden="true"></i></span>
+            <div>
+                <h1 class="h3 mb-1">گروه ها</h1>
+                <p class="text-muted mb-0"></p>
+            </div>
+        </div>
+        <div class="heading-actions">
+            <a class="btn btn-outline-secondary btn-sm" href="tables.html">
+                <i class="bi bi-download" aria-hidden="true"></i> ارسال به اکسل</a>
+            <a class="btn btn-primary btn-sm" href="{% url 'accounts:newgroup' %}">
+                <i class="bi bi-person-plus" aria-hidden="true"></i> گروه جدید </a>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table align-middle mb-0" id="usersTable" data-searchable-table>
+            <thead>
+                <tr>
+                    <th scope="col"> نام گروه</th>
+                    <th scope="col" class="text-end">Action</th>
+                    <th scope="col" class="text-end">ویرایش</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for group in groups %}
+                <tr>
+                    <td>
+                        {{ group.name }}
+                    </td>
+                    <td class="text-end"><a class="btn btn-light btn-sm" href="user-details.html">View</a></td>
+                    <td class="text-end">
+                        <a class="btn btn-light btn-sm" href="{% url 'accounts:edit_group' group.id %}"><i class="bi bi-pencil-square"></i>
+                            ویرایش
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="2" class="text-center text-muted">
+                        گروهی وجود ندارد
+                    </td>
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 mt-3">
+        <p class="text-muted small mb-0">Showing 1 to 5 of 124 users</p>
+        <nav aria-label="Users pagination">
+            <ul class="pagination pagination-sm mb-0">
+                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+</section>
+
+
+
+
+
+
+{% endblock %}

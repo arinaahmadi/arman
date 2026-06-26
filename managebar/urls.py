@@ -12,6 +12,4 @@ urlpatterns = [
     path('bardetail/<str:shbar>',detail_view,name='bardetail'),
     path('barnameh/',barnameh_view,name='barnameh'),
     path('insertbank/',insertbank_view,name='insertbank')
-
-
 ]
