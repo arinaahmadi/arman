@@ -37,6 +37,11 @@
           <span class="nav-icon"><i class="bi bi-file-earmark-text" aria-hidden="true"></i></span>
           <span class="nav-text">بارنامه ها</span>
         </a>
+        <a class="nav-link {% if request.resolver_match.url_name == 'banks' %} active {% endif %}" href="{% url 'managebar:banks' %}">
+          <span class="nav-icon"><i class="bi bi-bank" aria-hidden="true"></i></span>
+          <span class="nav-text">بانک ها</span>
+        </a>
+
         {% if request.user.is_superuser %}
         <a class="nav-link {% if request.resolver_match.url_name == 'users' %} active {% endif %}" href="{% url 'accounts:users' %}">
           <span class="nav-icon"><i class="bi bi-people" aria-hidden="true"></i></span>

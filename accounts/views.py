@@ -163,7 +163,7 @@ def new_user_view(request):
     if request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
-            print("cleaned_data =", form.cleaned_data)
+            # print("cleaned_data =", form.cleaned_data)
             form.save()
             return redirect('accounts:users')  # نام url صفحه‌ای که لیست گروه‌ها/کاربرها را نشان می‌دهد
         else:

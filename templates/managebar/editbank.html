@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="page-heading">
+    <div class="page-heading-copy">
+        <span class="page-icon"><i class="bi bi-person-plus" aria-hidden="true"></i></span>
+        <div>
+            <p class="eyebrow mb-1">مدیریت</p>
+            <h1 class="h3 mb-1">بانک جدید</h1>
+            <p class="text-muted mb-0">Create a new user account with role and team assignments.</p>
+        </div>
+    </div>
+    <div class="heading-actions"><a class="btn btn-outline-secondary btn-sm" href="{% url 'managebar:banks' %}"><i
+                class="bi bi-arrow-left" aria-hidden="true"></i> برگشت به لیست بانک</a></div>
+</div>
+
+<section class="row g-3">
+    <div class="col-12 col-xl-12">
+        <form class="panel needs-validation" action="{% url 'managebar:editbank' bank_id %}" method="post">
+            {% csrf_token %}
+            <div class="panel-header">
+                <div>
+                    <h2 class="h5 mb-1 section-title"><i class="bi bi-person-plus" aria-hidden="true"></i><span>User
+                            Information</span></h2>
+                    <p class="text-muted mb-0">ایجاد بانک جدید</p>
+                </div>
+            </div>
+            <div class="row g-3">
+                <div class="col-md-6"><label class="form-label" for="bank_name">نام بانک</label><input
+                        class="form-control" name="bank_name" type="text"  value="{{ form.bank_name.value|default:'' }}" required>
+                    <div class="invalid-feedback">نام بانک</div>
+                </div>
+                <div class="col-md-6"><label class="form-label" for="account_code">شماره حساب</label><input
+                        class="form-control" name="account_code" type="text"  value="{{ form.account_code.value|default:'' }}"  required>
+                    <div class="invalid-feedback">شماره حساب</div>
+                </div>
+                <div class="col-md-6"><label class="form-label" for="account_holder">صاحب حساب</label><input
+                        class="form-control" name="account_holder" type="text" value="{{ form.account_holder.value|default:'' }}"  required>
+                    <div class="invalid-feedback">صاحب حساب</div>
+                </div>
+
+
+                <div class="d-flex flex-wrap justify-content-end gap-2 mt-4"><a class="btn btn-outline-secondary"
+                        href="{% url 'managebar:banks' %}">انصراف</a>
+                    <button class="btn btn-primary" type="submit"><i class="bi bi-bank" aria-hidden="true"></i>
+                        ذخیره تغییرات</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</section>
+
+
+
+{% endblock %}

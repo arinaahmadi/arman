@@ -11,5 +11,8 @@ urlpatterns = [
     path('ourlawyers/',ourlawyers_view,name='ourlawyers'),
     path('bardetail/<str:shbar>',detail_view,name='bardetail'),
     path('barnameh/',barnameh_view,name='barnameh'),
-    path('insertbank/',insertbank_view,name='insertbank')
+    path('insertbank/',insertbank_view,name='insertbank'),
+    path('banks/',banks_view,name='banks'),
+    path('newbank/',createbank_view,name='newbank'),
+    path('editbank/<int:bank_id>',editbank_view,name='editbank')
 ]
