@@ -30,16 +30,28 @@
             </div>
             <div class="row g-3">
                 <div class="col-md-6"><label class="form-label" for="bank_name">نام بانک</label><input
-                        class="form-control" name="bank_name" type="text" required>
+                        class="form-control" name="bank_name" type="text">
                     <div class="invalid-feedback">نام بانک</div>
                 </div>
                 <div class="col-md-6"><label class="form-label" for="account_code">شماره حساب</label><input
-                        class="form-control" name="account_code" type="text" required>
+                        class="form-control {% if form.account_code.errors %}is-invalid{% endif %}" name="account_code"
+                        type="text">
+                    {% if form.account_code.errors %}
+                    <div class="invalid-feedback">
+                        {{ form.account_code.errors.0 }}
+                    </div>
+                    {% else %}
+                    <div class="invalid-feedback">شماره حساب باید فقط شامل عدد باشد.</div>
+                    {% endif %}
                     <div class="invalid-feedback">شماره حساب</div>
                 </div>
                 <div class="col-md-6"><label class="form-label" for="account_holder">صاحب حساب</label><input
                         class="form-control" name="account_holder" type="text" required>
                     <div class="invalid-feedback">صاحب حساب</div>
+                </div>
+                <div class="col-md-6">
+                    <input class="form-check-input" type="checkbox" name="status" checked>
+                    <label class="form-check-label" for="sampleCheck">فعال</label>
                 </div>
 
 

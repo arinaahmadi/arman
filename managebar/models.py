@@ -5,13 +5,22 @@ class Bank(models.Model):
     bank_name = models.CharField(max_length=100)
     account_code = models.CharField(max_length=30)
     account_holder = models.CharField(max_length=100)
+    status = models.BooleanField(default=True)
 
     def __str__(self):
         return self.account_holder
     
 class Receiver(models.Model):
-    owner_code = models.CharField(max_length=15)
-    owner_name = models.CharField(max_length=150)
+    owner_code = models.CharField(
+        max_length=15,
+        verbose_name = "کد گیرنده",
+        help_text="این فیلد کد شناسایی گیرنده است که اگر حقیقی باشد همان کد ملی است و اگر حقوقی باشد که شناسه ملی شرکت است"
+        )
+    owner_name = models.CharField(
+        max_length=150,
+        verbose_name = "نام گیرنده",
+        help_text="نام گیرنده که یک نام حقیقی باشد که همان نام و نام خانوادگی است و حقوقی نام یک شرکت است"
+        )
 
     def __str__(self):
         return self.owner_name

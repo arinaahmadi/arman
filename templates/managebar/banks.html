@@ -25,7 +25,8 @@
                     <th>نام بانک</th>
                     <th>شماره حساب</th>
                     <th>صاحب حساب</th>
-                    <th class="text-end">Action</th>
+                    <th class="text-end">وضعیت</th>
+                    <th>view</th>
                     <th>ویرایش</th>
                 </tr>
             </thead>
@@ -38,6 +39,18 @@
     </div>
     </td>
     <td> {{bank.account_holder}} </td>
+    
+    <td>
+        {% if bank.status == True %}
+        <span class="badge text-bg-success">فعال</span>
+        {% elif bank.status == False %}
+        <span class="badge text-bg-danger"> غیر فعال</span>
+        {% endif %}
+
+    </td>
+
+
+
     <td class="text-end"><button class="btn btn-light btn-sm" type="button">View</button></td>
     <td class="text-end">
         <a class="btn btn-light btn-sm" href="{% url 'managebar:editbank' bank.id %}"><i

@@ -1,0 +1,88 @@
+--- GENERATED PROMPT ---
+# forms.py
+from django import forms
+
+from .models import Receiver
+
+
+class ReceiverForm(forms.ModelForm):
+    class Meta:
+        model = Receiver
+        fields = [
+            'owner_code',
+            'owner_name',
+        ]
+
+
+# views.py
+from django.shortcuts import get_object_or_404, redirect, render
+
+from .forms import ReceiverForm
+from .models import Receiver
+
+
+def listreceiver_view(request):
+    receivers = Receiver.objects.all()
+    return render(request, 'managebar/receivers.html', {'receivers': receivers})
+
+
+def detailreceiver_view(request, pk):
+    receiver = get_object_or_404(Receiver, pk=pk)
+    return render(request, 'managebar/receiver.html', {'receiver': receiver})
+
+
+def createreceiver_view(request):
+    if request.method == 'POST':
+        form = ReceiverForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('managebar:receivers')
+        else:
+            print(form.errors)   # برای دیباگ
+    else:
+        form = ReceiverForm()
+
+    return render(request, 'managebar/createreceiver.html', {'form': form})
+
+
+def updatereceiver_view(request, pk):
+    receiver = get_object_or_404(Receiver, pk=pk)
+
+    if request.method == 'POST':
+        form = ReceiverForm(request.POST, instance=receiver)
+        if form.is_valid():
+            form.save()
+            return redirect('managebar:receivers')
+        else:
+            print(form.errors)   # برای دیباگ
+    else:
+        form = ReceiverForm(instance=receiver)
+
+    return render(request, 'managebar/updatereceiver.html', {'form': form, 'receiver': receiver})
+
+
+def deletereceiver_view(request, pk):
+    receiver = get_object_or_404(Receiver, pk=pk)
+
+    if request.method == 'POST':
+        receiver.delete()
+        return redirect('managebar:receivers')
+
+    return render(request, 'managebar/deletereceiver.html', {'receiver': receiver})
+
+
+# urls.py
+from django.urls import path
+
+from . import views
+
+app_name = 'managebar'
+
+urlpatterns = [
+    path('receivers/', views.listreceiver_view, name='receivers'),
+    path('receivers/create/', views.createreceiver_view, name='createreceiver'),
+    path('receivers/<int:pk>/', views.detailreceiver_view, name='receiver'),
+    path('receivers/<int:pk>/update/', views.updatereceiver_view, name='updatereceiver'),
+    path('receivers/<int:pk>/delete/', views.deletereceiver_view, name='deletereceiver'),
+]
+------------------------
